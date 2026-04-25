@@ -170,7 +170,7 @@ button:focus {
 @media (max-width: 600px) {
   section {
     padding: 18px;
-    max-height: 180px;
+    max-height: 550px;
   }
 
   button {
