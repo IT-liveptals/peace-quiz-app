@@ -1,51 +1,39 @@
-// ======================================================
-// QUIZ APP - VANILLA JAVASCRIPT (FULL UPGRADED VERSION)
-// ======================================================
-
-
-// ======================================================
-// 1. GET ELEMENTS FROM HTML
-// (We connect JS to HTML so we can control the page)
-// ======================================================
-
-// Screens (we switch between them)
+// Screens (get elements for screens by id)
 const startScreen = document.getElementById("start-screen");
 const questionScreen = document.getElementById("question-screen");
 const resultScreen = document.getElementById("result-screen");
 
-// Buttons
+// getting elements from the buttons by id
 const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
 
-// Question display
+// getting question text element by id
 const questionText = document.getElementById("question-text");
 
-// Answer buttons inside fieldset
+// getting answer buttons (all buttons inside fieldset)
 const answerButtons = document.querySelectorAll("fieldset button");
 
-// Info displays
+// getting score, question counter, and timer elements by id
 const scoreElement = document.getElementById("score");
 const questionCounter = document.getElementById("question-counter");
 const timerElement = document.getElementById("timer");
 
-// Results
+// getting result screen elements by id
 const finalScore = document.getElementById("final-score");
 const percentage = document.getElementById("percentage");
 const breakdown = document.getElementById("breakdown");
 const messageElement = document.getElementById("message");
 const highScoreElement = document.getElementById("high-score");
 
-// Progress bar
+// get progress bar element by id
 const progressBar = document.getElementById("progress-bar");
 
-// Select dropdowns
+// getting topic and difficulty selects by id
 const topicSelect = document.getElementById("topic");
 const difficultySelect = document.getElementById("difficulty");
 
 
-// ======================================================
-// 2. QUESTION DATABASE (TOPIC + DIFFICULTY SYSTEM)
-// ======================================================
+// sets questions for each topic and difficulty level
 
 const questionBank = {
 
@@ -263,9 +251,7 @@ const questionBank = {
 };
 
 
-// ======================================================
-// 3. STATE VARIABLES (GAME DATA THAT CHANGES)
-// ======================================================
+// variables to hold game state
 
 let questions = [];            // current quiz questions
 let currentQuestionIndex = 0;  // which question user is on
@@ -276,18 +262,14 @@ let timeLeft = 10;             // countdown time
 let shuffledOptions = [];      // shuffled answers
 
 
-// ======================================================
-// 4. SHUFFLE FUNCTION (RANDOM ORDER)
-// ======================================================
+// suffle questions and answers
 
 function shuffleArray(array) {
    return array.sort(() => Math.random() - 0.5);
 }
 
 
-// ======================================================
-// 5. START QUIZ
-// ======================================================
+// start quiz when start button is clicked
 
 startBtn.addEventListener("click", () => {
 
@@ -314,17 +296,13 @@ startBtn.addEventListener("click", () => {
 
    showQuestion();
 });
-
-
-// ======================================================
-// 6. SHOW QUESTION
-// ======================================================
+//question display function
 
 function showQuestion() {
 
    const currentQuestion = questions[currentQuestionIndex];
 
-   // prepare answers (we attach original index for checking later)
+   // prepare answers
    shuffledOptions = currentQuestion.options.map((opt, i) => ({
       text: opt,
       index: i
@@ -352,9 +330,7 @@ function showQuestion() {
 }
 
 
-// ======================================================
-// 7. TIMER SYSTEM (DIFFICULTY BASED)
-// ======================================================
+// timer function
 
 function startTimer() {
 
@@ -363,9 +339,9 @@ function startTimer() {
    const difficulty = difficultySelect.value;
 
    // difficulty controls time
-   if (difficulty === "easy") timeLeft = 15;
-   if (difficulty === "medium") timeLeft = 10;
-   if (difficulty === "hard") timeLeft = 5;
+   if (difficulty === "easy") timeLeft = 20;
+   if (difficulty === "medium") timeLeft = 15;
+   if (difficulty === "hard") timeLeft = 7;
 
    timerElement.textContent = timeLeft;
 
@@ -389,9 +365,7 @@ function startTimer() {
 }
 
 
-// ======================================================
-// 8. TIMEOUT (NO ANSWER GIVEN)
-// ======================================================
+// handle time out (when user doesn't answer in time)
 
 function handleTimeOut() {
 
@@ -399,14 +373,11 @@ function handleTimeOut() {
       question: questions[currentQuestionIndex].question,
       isCorrect: false
    });
-
+   checkAnswer(shuffledOptions[i].index);
    nextQuestion();
 }
 
-
-// ======================================================
-// 9. CLICK ANSWER
-// ======================================================
+// add click events to answer buttons
 
 answerButtons.forEach((btn, i) => {
 
@@ -416,10 +387,7 @@ answerButtons.forEach((btn, i) => {
 
 });
 
-
-// ======================================================
-// 10. CHECK ANSWER
-// ======================================================
+// check if selected answer is correct
 
 function checkAnswer(selectedIndex) {
 
@@ -463,9 +431,7 @@ function checkAnswer(selectedIndex) {
 }
 
 
-// ======================================================
-// 11. NEXT QUESTION
-// ======================================================
+// move to next question or show results if quiz is over
 
 function nextQuestion() {
 
@@ -478,20 +444,13 @@ function nextQuestion() {
    }
 }
 
-
-// ======================================================
-// 12. PROGRESS BAR
-// ======================================================
+// update progress bar based on current question
 
 function updateProgressBar() {
    const progress = (currentQuestionIndex / questions.length) * 100;
    progressBar.style.width = `${progress}%`;
 }
-
-
-// ======================================================
-// 13. SHOW RESULTS
-// ======================================================
+// show results screen with score and feedback
 
 function showResults() {
 
@@ -532,11 +491,7 @@ function showResults() {
       breakdown.appendChild(li);
    });
 }
-
-
-// ======================================================
-// 14. RESTART QUIZ
-// ======================================================
+// restart quiz when restart button is clicked
 
 restartBtn.addEventListener("click", () => {
 

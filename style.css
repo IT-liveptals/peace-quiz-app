@@ -22,6 +22,12 @@ body {
   flex-direction: column;
   align-items: center;
 }
+#difficulty #topic {
+  width: 100%;
+  border-radius: 5px;
+  border: #c0a301 5px solid;
+  max-width: 300px;
+}
 #question-screen, #result-screen {
   width: 100%;
   max-width: 1000px;
@@ -109,7 +115,7 @@ button:focus {
 #percentage {
   font-size: 40px;
   font-weight: bold;
-  color: #667eea;
+  color: #041f9b;
   margin: 15px 0;
 }
 #message {
@@ -117,7 +123,7 @@ button:focus {
   margin-bottom: 10px;
 }
 #breakdown li {
-  background: rgba(0, 71, 151, 0.897);
+  background: rgba(3, 70, 146, 0.897);
   margin: 6px 0;
   padding: 10px;
   border-radius: 10px;
@@ -135,7 +141,7 @@ button:focus {
     max-height: 250px;   /* limits height so it doesn’t overflow */
     overflow-y: auto;    /* enables vertical scrolling */
     scrollbar-width: thin;
-  scrollbar-color: #3b82f6 transparent;
+  scrollbar-color: #012a6d transparent;
   }
 
 /* CONTAINER */
@@ -158,7 +164,7 @@ button:focus {
 #progress-bar {
   height: 100%;
   width: 0%;
-  background: #667eea;
+  background: #011880;
   border-radius: 5px;
   transition: width 0.3s ease;
 }
@@ -179,7 +185,7 @@ button:focus {
 }
 .powered-by {
   font-size: 12px;
-  background: linear-gradient(45deg, #1100ff, #ff9900);
+  background: linear-gradient(45deg, #0d01b8, #ff9900);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
